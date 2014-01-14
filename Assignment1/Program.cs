@@ -25,9 +25,19 @@ namespace Assigment1
             c[10] = HexStringToIntArray("466d06ece998b7a2fb1d464fed2ced7641ddaa3cc31c9941cf110abbf409ed39598005b3399ccfafb61d0315fca0a314be138a9f32503bedac8067f03adbf3575c3b8edc9ba7f537530541ab0f9f3cd04ff50d66f1d559ba520e89a2cb2a83");
 
             string crib = " the ";
+            int[] cribArray = StringToIntArray(crib);
 
-            int[] k = StringToIntArray(crib);
+            int[] result = XorIntArray(c[0], c[1]);
+            int[] cribResult = new int[crib.Length];
 
+            for (int i = 0; i < (result.Length - crib.Length); i++)
+            {
+                for (int j = 0; j < crib.Length; j++)
+                {
+                    cribResult[j] = cribArray[j] ^ result[i + j];
+                }
+                Debug.WriteLine(i + " |" + IntArrayToString(cribResult) + "|");
+            }
         }
 
         public static int[] HexStringToIntArray(string h)
@@ -40,7 +50,7 @@ namespace Assigment1
             return a;
         }
 
-        public static int[] XorIntArray(int s1, int[] s2)
+        public static int[] XorIntArray(int[] s1, int[] s2)
         {
             int[] result = new int[Math.Max(s1.Length, s2.Length)];
             for (int i = 0; i < Math.Max(s1.Length, s2.Length); i++)
@@ -68,6 +78,16 @@ namespace Assigment1
                 a[i] = (int)s[i];
             }
             return a;
+        }
+
+        public static string IntArrayToString(int[] a)
+        {
+            string s = "";
+            for (int i = 0; i < a.Length; i++)
+            {
+                s += (char)a[i];
+            }
+            return s;
         }
     }
 }
