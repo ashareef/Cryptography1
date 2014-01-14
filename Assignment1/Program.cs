@@ -26,6 +26,8 @@ namespace Assigment1
 
             string crib = " the ";
 
+            int[] k = StringToIntArray(crib);
+
         }
 
         public static int[] HexStringToIntArray(string h)
@@ -33,7 +35,37 @@ namespace Assigment1
             int[] a = new int[h.Length];
             for (int i = 0; i < h.Length; i += 2)
             {
-                a[i] = Convert.ToInt32(h[i] + "" +h[i + 1], 16);
+                a[i] = Convert.ToInt32(h[i] + "" + h[i + 1], 16);
+            }
+            return a;
+        }
+
+        public static int[] XorIntArray(int s1, int[] s2)
+        {
+            int[] result = new int[Math.Max(s1.Length, s2.Length)];
+            for (int i = 0; i < Math.Max(s1.Length, s2.Length); i++)
+            {
+                result[i] = s1[i % s1.Length] ^ s2[i % s2.Length];
+            }
+            return result;
+        }
+
+        public static string IntArrayToHexString(int[] a)
+        {
+            string h = "";
+            for (int i = 0; i < a.Length; i++)
+            {
+                h += a[i].ToString("X2");
+            }
+            return h;
+        }
+
+        public static int[] StringToIntArray(string s)
+        {
+            int[] a = new int[s.Length];
+            for (int i = 0; i < s.Length; i++)
+            {
+                a[i] = (int)s[i];
             }
             return a;
         }
